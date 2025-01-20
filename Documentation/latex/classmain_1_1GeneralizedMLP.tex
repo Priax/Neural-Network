@@ -1,0 +1,131 @@
+\doxysection{main.\+Generalized\+MLP Class Reference}
+\hypertarget{classmain_1_1GeneralizedMLP}{}\label{classmain_1_1GeneralizedMLP}\index{main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_a5e92d2299c2e2ce76108e4df55b05f77}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, layer\+\_\+sizes=None, activations=None, loss=\textquotesingle{}categorical\+\_\+cross\+\_\+entropy\textquotesingle{})
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_a60744190cc0de2217e185135582c2503}{forward}} (self, X)
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_ad0e5ba9a291d62ea8665ac5cf654b166}{backward}} (self, X, y, learning\+\_\+rate)
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_a3dee309f848e437bf185978cfa1e2ff2}{train}} (self, X, y, epochs, learning\+\_\+rate, batch\+\_\+size)
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_aab4c1603cb5dccd6a504937f5018e44b}{plot\+\_\+training\+\_\+history}} (self, loss\+\_\+history, accuracy\+\_\+history)
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_aa4f516ea7d66538bafa762c8a40f7611}{save}} (self, filename)
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_ac63cb0255a3bc57613a897941f12a7c0}{load}} (self, filename)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmain_1_1GeneralizedMLP_ab5c6d6647889be9cdab9c74f6aa1aec7}\label{classmain_1_1GeneralizedMLP_ab5c6d6647889be9cdab9c74f6aa1aec7} 
+{\bfseries layer\+\_\+sizes}
+\item 
+\Hypertarget{classmain_1_1GeneralizedMLP_a1f6bcb5323b4c6265641d356b787f52d}\label{classmain_1_1GeneralizedMLP_a1f6bcb5323b4c6265641d356b787f52d} 
+{\bfseries activations}
+\item 
+\Hypertarget{classmain_1_1GeneralizedMLP_afb213325a372e20792dfcf8ecbc05ba7}\label{classmain_1_1GeneralizedMLP_afb213325a372e20792dfcf8ecbc05ba7} 
+{\bfseries loss\+\_\+function}
+\item 
+\Hypertarget{classmain_1_1GeneralizedMLP_ad798aae9778b8ac4a63a9dc0a7132b6a}\label{classmain_1_1GeneralizedMLP_ad798aae9778b8ac4a63a9dc0a7132b6a} 
+{\bfseries loss\+\_\+derivative}
+\item 
+\Hypertarget{classmain_1_1GeneralizedMLP_a8434b4e29130ade8b5f9432f2790ea42}\label{classmain_1_1GeneralizedMLP_a8434b4e29130ade8b5f9432f2790ea42} 
+{\bfseries weights}
+\item 
+\Hypertarget{classmain_1_1GeneralizedMLP_aab8fbabe7537b34df84c17eeeaed4c3e}\label{classmain_1_1GeneralizedMLP_aab8fbabe7537b34df84c17eeeaed4c3e} 
+{\bfseries biases}
+\item 
+\Hypertarget{classmain_1_1GeneralizedMLP_a755e1375904987ff4d58202b6bdccb10}\label{classmain_1_1GeneralizedMLP_a755e1375904987ff4d58202b6bdccb10} 
+{\bfseries Z}
+\item 
+\Hypertarget{classmain_1_1GeneralizedMLP_ae0f2fe580508a988fde05f1d764d7cca}\label{classmain_1_1GeneralizedMLP_ae0f2fe580508a988fde05f1d764d7cca} 
+{\bfseries A}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_a265cd3319f4b719169aff49d30aefadc}{\+\_\+initialize\+\_\+weights}} (self)
+\item 
+\mbox{\hyperlink{classmain_1_1GeneralizedMLP_aae9cfae056ea8f64452b2c31a4f10147}{\+\_\+get\+\_\+activation}} (self, name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classmain_1_1GeneralizedMLP_a5e92d2299c2e2ce76108e4df55b05f77}\label{classmain_1_1GeneralizedMLP_a5e92d2299c2e2ce76108e4df55b05f77} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{layer\+\_\+sizes = {\ttfamily None},  }\item[{}]{activations = {\ttfamily None},  }\item[{}]{loss = {\ttfamily \textquotesingle{}categorical\+\_\+cross\+\_\+entropy\textquotesingle{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initializes a customizable MLP.
+:param layer_sizes: List of layer sizes [input, hidden1, hidden2, ..., output]
+:param activations: List of activation functions for each layer (excluding input layer)
+:param loss: Loss function to use (default: categorical_cross_entropy)
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmain_1_1GeneralizedMLP_aae9cfae056ea8f64452b2c31a4f10147}\label{classmain_1_1GeneralizedMLP_aae9cfae056ea8f64452b2c31a4f10147} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!\_get\_activation@{\_get\_activation}}
+\index{\_get\_activation@{\_get\_activation}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{\_get\_activation()}{\_get\_activation()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+\_\+get\+\_\+activation (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Retrieves the activation function and its derivative by name.\end{DoxyVerb}
+ \Hypertarget{classmain_1_1GeneralizedMLP_a265cd3319f4b719169aff49d30aefadc}\label{classmain_1_1GeneralizedMLP_a265cd3319f4b719169aff49d30aefadc} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!\_initialize\_weights@{\_initialize\_weights}}
+\index{\_initialize\_weights@{\_initialize\_weights}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{\_initialize\_weights()}{\_initialize\_weights()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+\_\+initialize\+\_\+weights (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Initializes weights and biases for each layer.\end{DoxyVerb}
+ \Hypertarget{classmain_1_1GeneralizedMLP_ad0e5ba9a291d62ea8665ac5cf654b166}\label{classmain_1_1GeneralizedMLP_ad0e5ba9a291d62ea8665ac5cf654b166} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!backward@{backward}}
+\index{backward@{backward}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{backward()}{backward()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+backward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{X,  }\item[{}]{y,  }\item[{}]{learning\+\_\+rate }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Performs backward propagation and updates weights and biases.\end{DoxyVerb}
+ \Hypertarget{classmain_1_1GeneralizedMLP_a60744190cc0de2217e185135582c2503}\label{classmain_1_1GeneralizedMLP_a60744190cc0de2217e185135582c2503} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!forward@{forward}}
+\index{forward@{forward}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{X }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Performs forward propagation.\end{DoxyVerb}
+ \Hypertarget{classmain_1_1GeneralizedMLP_ac63cb0255a3bc57613a897941f12a7c0}\label{classmain_1_1GeneralizedMLP_ac63cb0255a3bc57613a897941f12a7c0} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!load@{load}}
+\index{load@{load}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+load (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Loads the model's weights and biases from a file.\end{DoxyVerb}
+ \Hypertarget{classmain_1_1GeneralizedMLP_aab4c1603cb5dccd6a504937f5018e44b}\label{classmain_1_1GeneralizedMLP_aab4c1603cb5dccd6a504937f5018e44b} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!plot\_training\_history@{plot\_training\_history}}
+\index{plot\_training\_history@{plot\_training\_history}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{plot\_training\_history()}{plot\_training\_history()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+plot\+\_\+training\+\_\+history (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{loss\+\_\+history,  }\item[{}]{accuracy\+\_\+history }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Trace l'évolution de la perte et de l'accuracy pendant l'entraînement.\end{DoxyVerb}
+ \Hypertarget{classmain_1_1GeneralizedMLP_aa4f516ea7d66538bafa762c8a40f7611}\label{classmain_1_1GeneralizedMLP_aa4f516ea7d66538bafa762c8a40f7611} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!save@{save}}
+\index{save@{save}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+save (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Saves the model's weights and biases to a file.\end{DoxyVerb}
+ \Hypertarget{classmain_1_1GeneralizedMLP_a3dee309f848e437bf185978cfa1e2ff2}\label{classmain_1_1GeneralizedMLP_a3dee309f848e437bf185978cfa1e2ff2} 
+\index{main.GeneralizedMLP@{main.GeneralizedMLP}!train@{train}}
+\index{train@{train}!main.GeneralizedMLP@{main.GeneralizedMLP}}
+\doxysubsubsection{\texorpdfstring{train()}{train()}}
+{\footnotesize\ttfamily main.\+Generalized\+MLP.\+train (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{X,  }\item[{}]{y,  }\item[{}]{epochs,  }\item[{}]{learning\+\_\+rate,  }\item[{}]{batch\+\_\+size }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Trains the MLP on the given data.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+main.\+py\end{DoxyCompactItemize}

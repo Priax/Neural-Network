@@ -1,0 +1,10 @@
+{
+    "epochs": 300,
+    "batch_size": 32,
+    "learning_rate": 0.01,
+    "layers": [256, 128, 64],
+    "activations": ["relu", "relu", "relu", "softmax"],
+    "loss_function": "categorical_cross_entropy",
+    "weights": [],
+    "biases": []
+}

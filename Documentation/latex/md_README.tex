@@ -1,0 +1,213 @@
+\chapter{Documentation MLP}
+\hypertarget{md_README}{}\label{md_README}\index{Documentation MLP@{Documentation MLP}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+ \hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{md_README_autotoc_md1}
+Ce projet vise à concevoir un perceptron multicouche (MLP) pour modéliser les états de jeu d\textquotesingle{}échecs, avec comme objectif d\textquotesingle{}effectuer des prédictions précises sur des positions spécifiques du plateau. En utilisant des techniques comme la propagation avant, la rétropropagation et l\textquotesingle{}initialisation He, ce modèle apprend à partir des données pour optimiser ses prédictions. Ce document décrit en détail les composants, les algorithmes et les justifications des choix effectués dans l\textquotesingle{}implémentation.\hypertarget{md_README_autotoc_md2}{}\doxysection{\texorpdfstring{1. Fonctions d\textquotesingle{}activation}{1. Fonctions d\textquotesingle{}activation}}\label{md_README_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(x)}
+
+\end{DoxyCode}
+ \+: Renvoie le maximum entre 0 et x (fonction Re\+LU).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_derivative(x)}
+
+\end{DoxyCode}
+ \+: Renvoie la dérivée de la fonction Re\+LU.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(x)}
+
+\end{DoxyCode}
+ \+: Applique la fonction sigmoïde sur x.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_derivative(x)}
+
+\end{DoxyCode}
+ \+: Renvoie la dérivée de la fonction sigmoïde.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(x)}
+
+\end{DoxyCode}
+ \+: Applique la fonction tangente hyperbolique.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_derivative(x)}
+
+\end{DoxyCode}
+ \+: Renvoie la dérivée de la fonction tangente hyperbolique.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(x)}
+
+\end{DoxyCode}
+ \+: Applique la fonction softmax pour convertir les logits en probabilités.\hypertarget{md_README_autotoc_md3}{}\doxysection{\texorpdfstring{2. Fonctions de perte}{2. Fonctions de perte}}\label{md_README_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_cross\_entropy(y\_true,\ y\_pred)}
+
+\end{DoxyCode}
+ \+: Calcule l\textquotesingle{}entropie croisée pour la classification multi-\/classe.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_cross\_entropy\_derivative(y\_true,\ y\_pred)}
+
+\end{DoxyCode}
+ \+: Calcule la dérivée de l\textquotesingle{}entropie croisée.\hypertarget{md_README_autotoc_md4}{}\doxysection{\texorpdfstring{3. Classe Generalized\+MLP}{3. Classe Generalized\+MLP}}\label{md_README_autotoc_md4}
+Classe implémentant un Multi Layered Perceptron (MLP) personnalisable.\hypertarget{md_README_autotoc_md5}{}\doxysubsection{\texorpdfstring{Méthodes principales}{Méthodes principales}}\label{md_README_autotoc_md5}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_\_init\_\_(layer\_sizes,\ activations,\ loss)}
+
+\end{DoxyCode}
+ \+:
+
+Initialise le MLP avec les tailles des couches, les fonctions d\textquotesingle{}activation, et la fonction de perte.
+
+Vérifie la correspondance entre le nombre de couches et les fonctions d\textquotesingle{}activation.
+
+Initialise les poids et les biais.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_initialize\_weights()}
+
+\end{DoxyCode}
+ \+:
+
+Initialise les poids avec l\textquotesingle{}initialisation He.
+
+Initialise les biais à 0.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_get\_activation(name)}
+
+\end{DoxyCode}
+ \+:
+
+Retourne la fonction d\textquotesingle{}activation et sa dérivée correspondant au nom fourni.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(x)}
+
+\end{DoxyCode}
+ \+:
+
+Effectue une propagation avant sur les données d\textquotesingle{}entrée X, en calculant les sorties de chaque couche du réseau à partir des poids, des biais et des fonctions d\textquotesingle{}activation spécifiés. Cela permet de prédire les résultats en fonction des données d\textquotesingle{}entrée actuelles.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(X,\ y,\ learning\_rate)}
+
+\end{DoxyCode}
+ \+:
+
+Calcule les gradients des poids et biais via rétropropagation.
+
+Met à jour les poids et biais avec le taux d\textquotesingle{}apprentissage.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(X,\ y,\ epochs,\ learning\_rate,\ batch\_size)}
+
+\end{DoxyCode}
+ \+:
+
+Entraîne le modèle sur les données d\textquotesingle{}entrée et de sortie X et y.
+
+Affiche la perte et la précision tous les 10 epochs.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(filename)}
+
+\end{DoxyCode}
+ \+:
+
+Sauvegarde les poids, les biais, et la configuration dans un fichier pickle.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(filename)}
+
+\end{DoxyCode}
+ \+:
+
+Charge les poids, les biais, et la configuration à partir d\textquotesingle{}un fichier pickle.\hypertarget{md_README_autotoc_md6}{}\doxysection{\texorpdfstring{1. Gestion des états du jeu d\textquotesingle{}échecs}{1. Gestion des états du jeu d\textquotesingle{}échecs}}\label{md_README_autotoc_md6}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_state\_labels}
+
+\end{DoxyCode}
+ \+: Dictionnaire associant les états du jeu d\textquotesingle{}échecs (Check Black, Stalemate, Nothing...) à des indices numériques.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_custom\_fen(fen)}
+
+\end{DoxyCode}
+ \+:
+
+Valide et extrait les informations d\textquotesingle{}un FEN (Forsyth-\/\+Edwards Notation).
+
+Retourne un dictionnaire contenant les placements des pièces, les droits de roque, le nombre de coups, etc.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_fens\_from\_directory(directory)}
+
+\end{DoxyCode}
+ \+:
+
+Parcourt un répertoire et extrait tous les FEN valides à partir des fichiers texte.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_chessboard(fen)}
+
+\end{DoxyCode}
+ \+:
+
+Encode le plateau d\textquotesingle{}échecs représenté par un FEN en une matrice 1D utilisable pour le modèle.
+
+Chaque case est représentée par un vecteur de 12 dimensions correspondant à toutes les pièces possibles.\hypertarget{md_README_autotoc_md7}{}\doxysection{\texorpdfstring{1. Exemple d\textquotesingle{}utilisation}{1. Exemple d\textquotesingle{}utilisation}}\label{md_README_autotoc_md7}
+Taille d\textquotesingle{}entrée \+: 64 \texorpdfstring{$\ast$}{*} 12 (plateau d\textquotesingle{}échecs encodé).
+
+Couches cachées \+: \mbox{[}256, 128, 64\mbox{]}. ~\newline
+ Ces tailles ont été choisies pour équilibrer la capacité d\textquotesingle{}apprentissage et les besoins en calcul. Une couche initiale de 256 neurones permet d\textquotesingle{}extraire des motifs complexes des données brutes encodées. Les couches successives de 128 et 64 neurones réduisent progressivement la dimensionnalité, favorisant une meilleure généralisation et limitant le surapprentissage (overfitting). Cette architecture a montré une bonne performance pour capturer les relations non linéaires dans les états de jeu d\textquotesingle{}échecs.
+
+Taille de sortie \+: 6 (correspondant à game\+\_\+state\+\_\+labels).\hypertarget{md_README_autotoc_md8}{}\doxysubsection{\texorpdfstring{Entraînement \+:}{Entraînement \+:}}\label{md_README_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mlp\ =\ GeneralizedMLP(}
+\DoxyCodeLine{\ \ \ \ layer\_sizes=[64\ *\ 12,\ 256,\ 128,\ 64,\ 6],}
+\DoxyCodeLine{\ \ \ \ activations=[\textcolor{stringliteral}{'relu'},\ \textcolor{stringliteral}{'relu'},\ \textcolor{stringliteral}{'relu'},\ \textcolor{stringliteral}{'softmax'}]}
+\DoxyCodeLine{)}
+\DoxyCodeLine{mlp.train(X\_train,\ y\_train,\ epochs=100,\ learning\_rate=0.01,\ batch\_size=32)}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md9}{}\doxysection{\texorpdfstring{6. Notes}{6. Notes}}\label{md_README_autotoc_md9}
+Robustesse \+: Les fonctions de validation des FEN garantissent des entrées valides.
+
+Modularité \+: Le modèle est hautement configurable (activation, taille des couches, perte).\hypertarget{md_README_autotoc_md10}{}\doxysection{\texorpdfstring{Améliorations possibles \+:}{Améliorations possibles \+:}}\label{md_README_autotoc_md10}
+
+\begin{DoxyItemize}
+\item Ajout de mécanismes de régularisation (dropout, L2).
+\item Support d\textquotesingle{}autres fonctions de perte.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md11}{}\doxysection{\texorpdfstring{Note}{Note}}\label{md_README_autotoc_md11}
+Du Multithreading n\textquotesingle{}a pas été rajouté car il a été testé que le modèle fonctionnait mieux en mélangeant plusieurs données différentes (pour que le modèle ne s\textquotesingle{}adapte pas trop à un seul état).
+
+Le modèle fonctionne donc mieux en récupérant plusieurs données différentes, qui seront ensuites shuffle entre elles, puis le modèle s\textquotesingle{}entraînera. 
